@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotzhi.testweather.R;
+import com.hotzhi.testweather.service.AutoUpdateService;
 import com.hotzhi.testweather.util.HttpCallbackListener;
 import com.hotzhi.testweather.util.HttpUtil;
 import com.hotzhi.testweather.util.Utility;
@@ -138,6 +139,8 @@ public class WeatherActivity extends AppCompatActivity implements View.OnClickLi
         currentDateText.setText(preferences.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     @Override
