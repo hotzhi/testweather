@@ -107,6 +107,7 @@ public class WeatherActivity extends AppCompatActivity {
 
             @Override
             public void onError(Exception e) {
+                e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

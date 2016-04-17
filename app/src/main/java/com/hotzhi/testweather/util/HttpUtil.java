@@ -26,13 +26,22 @@ public class HttpUtil {
                     InputStream in = connection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                     StringBuilder response = new StringBuilder();
-                    String line;
-                    while((line = reader.readLine()) != null) {
-                        response.append(line);
-                    }
+//                    String line;
+//                    while((line = reader.readLine()) != null) {
+//                        response.append(line);
+//                    }
+                    char[] data = new char[1024];
+                    int len  = reader.read(data);
+                    response.append(String.valueOf(data, 0, len));
                     if(listener != null) {
                         // 回调onFinish()方法
                         listener.onFinish(response.toString());
+                    }
+                    if(reader != null) {
+                        reader.close();
+                    }
+                    if(in != null) {
+                        in.close();
                     }
                 } catch (Exception e) {
                     if(listener != null) {
